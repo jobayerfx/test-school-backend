@@ -30,7 +30,7 @@ export const createQuestion = async (req: AuthRequest, res: Response) => {
 // Get paginated questions
 export const getQuestions = async (req: Request, res: Response) => {
   try {
-    const { page = 1, limit = 10, level, competency } = req.query;
+    const { page = 1, limit = 12, level, competency } = req.query;
 
     const filter: any = {};
     if (level) filter.level = level;

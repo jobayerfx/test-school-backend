@@ -66,7 +66,7 @@ const TestSessionSchema = new Schema<ITestSessionDocument>(
     ],
     status: {
       type: String,
-      enum: ["in_progress", "submitted", "graded", "expired"],
+      enum: ["in_progress", "submitted", "graded", "expired", "auto_submitted"],
       default: "in_progress",
       required: true,
     },
@@ -83,4 +83,3 @@ TestSessionSchema.index({ userId: 1 });
 TestSessionSchema.index({ status: 1, endTime: 1 });
 
 export default model<ITestSessionDocument>("TestSession", TestSessionSchema);
-

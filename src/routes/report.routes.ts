@@ -4,8 +4,8 @@ import { ReportController } from '../controllers/report.controller';
 const router = Router();
 
 // Existing report routes
-router.get('/reports/per-competency', ReportController.perCompetency);
-router.get('/reports/user-performance', ReportController.userPerformance);
+router.get('/per-competency', ReportController.perCompetency);
+router.get('/user-performance', ReportController.userPerformance);
 
 // Dashboard API routes
 router.get('/dashboard/stats', ReportController.getDashboardStats);

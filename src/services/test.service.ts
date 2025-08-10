@@ -65,6 +65,9 @@ export async function startTestSession(userId: string, step: 1 | 2 | 3, minutesP
     { $match: { level: { $in: levels } } },
     { $sample: { size: countNeeded } },
   ]);
+  console.log('Levels filter:', levels);
+  console.log({total: questions.length});
+  
 
   if (!questions || questions.length < countNeeded) {
     const err: any = new Error("Not enough questions in pool for this step");

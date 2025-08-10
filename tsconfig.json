@@ -30,7 +30,7 @@
   },
   "include": [
     "src/**/*"
-  ],
+, "demo-questions.ts"  ],
   "exclude": [
     "node_modules",
     "dist",

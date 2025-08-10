@@ -30,14 +30,14 @@ export async function startTest(req: AuthRequest, res: Response) {
 
 /**
  * POST /api/tests/:sessionId/answer (autosave)
- * body: { answers: [{ questionId, selectedIndex, timeTakenSec }] }
+ * body: { answers: [{ questionId, answer, isCorrect }] }
  */
 export async function autosaveAnswers(req: AuthRequest, res: Response) {
   try {
     if (!req.user) return res.status(401).json({ message: "Unauthorized" });
     const { sessionId } = req.params;
     const answers = req.body.answers;
-
+    // console.log({answers, sessionId});
     const session = await TestSession.findById(sessionId);
     if (!session) return res.status(404).json({ message: "Session not found" });
     if (!session.userId.equals(req.user.id)) return res.status(403).json({ message: "Forbidden" });
@@ -107,7 +107,7 @@ export async function getSession(req: AuthRequest, res: Response) {
   try {
     if (!req.user) return res.status(401).json({ message: "Unauthorized" });
     const { sessionId } = req.params;
-    const session = await TestSession.findById(sessionId).populate("questions.questionId", "-correctAnswer -__v -createdBy");
+    const session = await TestSession.findById(sessionId).populate("questions.questionId", "-__v -createdBy");
     if (!session) return res.status(404).json({ message: "Session not found" });
     if (!session.userId.equals(req.user.id) && req.user.role !== "admin") return res.status(403).json({ message: "Forbidden" });
 
